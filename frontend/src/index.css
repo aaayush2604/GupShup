@@ -10,10 +10,7 @@ body{
     background-attachment: fixed;
 }
 
-::-webkit-scrollbar{
-    width:8px !important;
-    background-color: black !important;
-}
+
 /* ::-webkit-scrollbar-track{
     background:#555;
 }

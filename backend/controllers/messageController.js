@@ -2,9 +2,10 @@ const Conversation = require("../models/conversationModel");
 const Message = require("../models/messageModel");
 
 const sendMessage = async (req, res) => {
+  console.log("Hooooooooooooo");
   try {
     const { msg } = req.body;
-    console.log(msg);
+    console.log("ody", msg);
     const { id: receiverId } = req.params;
     const senderId = req.user._id;
 
@@ -29,7 +30,7 @@ const sendMessage = async (req, res) => {
 
     //this will allow both of them to run in parallel
     await Promise.all([conversation.save(), newMessage.save()]);
-
+    console.log("New Message: ", newMessage);
     res.status(201).json(newMessage);
   } catch (error) {
     console.log("Error in Send Message Controller " + error.message);
@@ -46,6 +47,8 @@ const getMessage = async (req, res) => {
     const conversation = await Conversation.findOne({
       participants: { $all: [userToChatId, senderId] },
     }).populate("messages");
+
+    if (!conversation) return res.status(201).json([]);
 
     res.status(200).json(conversation.messages);
   } catch (error) {
