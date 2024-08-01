@@ -10,8 +10,13 @@ const cookieParser = require("cookie-parser");
 
 const { app, server } = require("./socket/socket.js");
 
+const corsOptions = {
+  origin: "https://gup-shup-eight.vercel.app", // your frontend URL
+  credentials: true, // this allows the server to accept cookies from the client
+};
+
 app.use(express.json());
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
