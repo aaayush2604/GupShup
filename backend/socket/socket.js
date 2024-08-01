@@ -5,10 +5,10 @@ const express = require("express");
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: {
-    origin: ["https://gup-shup-eight.vercel.app/"],
-    methods: ["GET", "POST"],
-  },
+  // cors: {
+  //   origin: ["https://gup-shup-eight.vercel.app/"],
+  //   methods: ["GET", "POST"],
+  // },
 });
 
 const getReceiverSocketId = (receiverId) => {
