@@ -4,6 +4,7 @@ import MessageInput from './MessageInput'
 import {TiMessages} from 'react-icons/ti';
 import useConversation from '../../zustand/useConversation';
 import { useAuthContext } from '../../context/AuthContext';
+import { useWidthContext } from '../../context/WidthContext';
 
 const NoChatSelected=()=>{
   const {authUser}=useAuthContext();
@@ -18,6 +19,7 @@ const NoChatSelected=()=>{
 
 const MessageContainer = () => {
   const {selectedConversation,setSelectedConversation}=useConversation();
+  const {setShowUsers}=useWidthContext();
 
   useEffect(()=>{
     return ()=>setSelectedConversation(null);
@@ -27,7 +29,9 @@ const MessageContainer = () => {
     <div className='md:min-w-[450px] flex flex-col'>
       {!selectedConversation?<NoChatSelected/>:
       <>
+        
         <div className='bg-slate-500 px-4 py-2 mb-2'>
+            <div onClick={()=>setShowUsers(true)} className='text-black hover:underline'>Go Back</div>
             <span className='label-text'>To:</span>
             <span className='text-gray-900 font-bold'>{selectedConversation.fullName}</span>
             
